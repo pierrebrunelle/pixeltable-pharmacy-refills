@@ -1,6 +1,9 @@
 <!-- pixeltable-example-app: 20261006-pharmacy-refills -->
 # Pharmacy Refill API built with Pixeltable
 
+![Pharmacy Refill API built with Pixeltable](.github/social-preview.png)
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/pierrebrunelle/pixeltable-pharmacy-refills?quickstart=1)
 [![Built with Pixeltable](https://img.shields.io/badge/built%20with-Pixeltable-5b4bff)](https://pixeltable.com)
 [![PyPI - pixeltable](https://img.shields.io/pypi/v/pixeltable?label=pixeltable)](https://pypi.org/project/pixeltable/)
 [![GitHub stars](https://img.shields.io/github/stars/pixeltable/pixeltable?style=social)](https://github.com/pixeltable/pixeltable)
@@ -54,6 +57,9 @@ pxt dashboard                      # open the local dashboard
 
 | File | What it is |
 |------|------------|
+| `.devcontainer/devcontainer.json` | GitHub Codespaces / Dev Container config: Python 3.12, installs `requirements.txt`, forwards port 8000 |
+| `.github/social-preview.png` | Social preview image (1280x640) |
+| `CITATION.cff` | Citation metadata (authors, license, release date, keywords) |
 | `app.py` | The app: tables declared as Python classes, `@pxt.query` functions, and the `FastAPIRouter` routes |
 | `client_demo.py` | Sign, request, advance and query refills through the API (the service needs REFILL_SIGNING_KEY) |
 | `pixeltable.toml` | Project config: the local database plus a Pixeltable Cloud database (sizing, deploy excludes) |
@@ -78,6 +84,25 @@ pxt dashboard                      # open the local dashboard
 | `POST` | `/sign` | compute | `Refills` |  |
 | `GET` | `/refills/queue` | query | `queue` |  |
 | `GET` | `/patients/prescriptions` | query | `patient_prescriptions` |  |
+
+## Run in your browser (GitHub Codespaces)
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/pierrebrunelle/pixeltable-pharmacy-refills?quickstart=1)
+
+1. Click **Open in GitHub Codespaces** above (or [this link](https://codespaces.new/pierrebrunelle/pixeltable-pharmacy-refills?quickstart=1)). The dev container installs Python 3.12 and `pixeltable[serve]>=0.7.14` from `requirements.txt`.
+2. In the codespace terminal, create the tables, seed them and start the API:
+
+   ```bash
+   pxt schema update app.py pharmacy
+   export REFILL_SIGNING_KEY=<any-long-random-string>   # read by udfs.receipt_signature at runtime
+   python seed.py pharmacy
+   pxt service run app.py pharmacy --port 8000   # same shell, so the service sees the key
+   python client_demo.py                        # in another terminal
+   ```
+
+3. Codespaces forwards port 8000: open it from the **Ports** tab (or the pop-up) and add `/docs` to the URL for the interactive OpenAPI docs.
+
+This app reads `REFILL_SIGNING_KEY` at runtime. Add it as a [Codespaces secret](https://docs.github.com/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces) (the dev container recommends it when you create the codespace) or `export` it in the terminal before starting the service.
 
 ## Quickstart
 
@@ -197,6 +222,9 @@ refill_api.add_query_route(path='/patients/prescriptions', query=patient_prescri
 - 📚 Docs: https://docs.pixeltable.com
 - 💻 Source: https://github.com/pixeltable/pixeltable (⭐ star it if Pixeltable is useful to you)
 - 📦 PyPI: https://pypi.org/project/pixeltable/
+- 🧩 More example apps: https://pierrebrunelle.github.io/awesome-pixeltable-apps/
+
+**[More Pixeltable example apps →](https://pierrebrunelle.github.io/awesome-pixeltable-apps/)**
 
 ---
 

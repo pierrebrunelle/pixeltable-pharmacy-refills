@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use or adapt this example app, please cite it using these metadata."
+type: software
+title: "Pharmacy Refill API built with Pixeltable"
+abstract: "Pharmacy refill queue API with HMAC-signed receipts keyed by a runtime secret and B-tree indexed lookups."
+authors:
+  - given-names: "Pierre"
+    family-names: "Brunelle"
+repository-code: "https://github.com/pierrebrunelle/pixeltable-pharmacy-refills"
+url: "https://pierrebrunelle.github.io/awesome-pixeltable-apps/"
+license: Apache-2.0
+version: "0.1.0"
+date-released: 2026-10-07
+keywords:
+  - "pixeltable"
+  - "pixeltable-example"
+  - "python"
+  - "secrets-management"
+  - "healthcare"
+  - "hmac"
+  - "database-indexing"
+  - "cli"
+  - "fastapi"
+  - "multimodal"
